@@ -1,0 +1,18 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: my_recipe_sinatra
+  pool: 40
+  username: postgres
+  password: <%= ENV['password'] %>
+
+production:
+  uri: ENV['DATABASE_URL']
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: my_recipe_sinatra_test
+  pool: 40
+  username: postgres
+  password: <%= ENV['password'] %>
