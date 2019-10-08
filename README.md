@@ -1,2 +1,2 @@
 # My Recipe
-Use sinatra framework.
+Uses sinatra framework.
