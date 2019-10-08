@@ -1,13 +1,10 @@
 require_relative "spec_helper"
 
-def app
-  ApplicationController
-end
-
-describe ApplicationController do
-  it "responds with a welcome message" do
+RSpec.describe ApplicationController, type: :controller do
+  it 'should allow accessing the home page' do
     get '/'
-    expect(last_response.status).to eq(200)
-    expect(last_response.body).to include("Welcome to the Sinatra Template!")
+
+    expect(last_response).to be_ok
+    expect(last_response.body).to include('Welcome to My Recipes')
   end
 end
