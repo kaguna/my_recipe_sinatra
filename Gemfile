@@ -14,9 +14,15 @@ gem 'tux'
 gem 'simplecov'
 gem 'rb-readline'
 
-group :test do
+group :development, :test do
   gem 'rspec'
   gem 'capybara'
-  gem 'rack-test'
+  gem 'chromedriver-helper'
+  gem 'selenium-webdriver'
+  gem 'rack-test', require: 'rack/test'
+  gem 'rack_session_access'
+  gem 'factory_bot'
+  gem 'faker'
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
 end

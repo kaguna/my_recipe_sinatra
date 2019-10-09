@@ -1,4 +1,4 @@
-require_relative "spec_helper"
+require_relative "../spec_helper"
 
 RSpec.describe ApplicationController, type: :controller do
   it 'should allow accessing the home page' do
