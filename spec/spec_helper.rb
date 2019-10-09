@@ -1,5 +1,11 @@
 ENV["RACK_ENV"] = "test"
 
+require 'simplecov'
+
+SimpleCov.start do
+  add_filter '/spec/'
+end
+
 require_relative '../config/environment'
 require 'rspec'
 require 'rack/test'
@@ -37,10 +43,13 @@ Capybara.configure do |config|
   config.default_max_wait_time = 10
 end
 
-Capybara.app = Rack::Builder.parse_file(
-  File.expand_path('../config.ru', __dir__)
-).first
+def app
+  Rack::Builder.parse_file(
+    File.expand_path('../config.ru', __dir__)
+  ).first
+end
 
+Capybara.app = app
 Capybara.server = :webrick
 
 Capybara.register_driver :selenium_chrome do |app|

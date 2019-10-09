@@ -4,7 +4,7 @@ jobs:
   build:
     working_directory: ~/my_recipe_sinatra
     docker:
-      - image: circleci/ruby:2.5.0-node
+      - image: circleci/ruby:2.5.0-node-browsers
         environment:
           CC_TEST_REPORTER_ID: 30fb58de40f62a3ea9aed3ae0c35cce63f5be9d79aaf4e4979f6a1b60204c01d
           PGHOST: localhost
@@ -51,6 +51,15 @@ jobs:
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
+      
+      - run:
+          name: Install Chrome
+          command: |
+            sudo apt install -y libappindicator3-1
+            curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo dpkg -i google-chrome.deb
+            sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
+            rm google-chrome.deb
       
       - run:
           name: Run tests

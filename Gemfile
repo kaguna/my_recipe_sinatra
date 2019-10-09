@@ -14,11 +14,14 @@ gem 'tux'
 gem 'simplecov'
 gem 'rb-readline'
 
+group :development do 
+  gem 'chromedriver-helper', '~> 2.0'
+end
+
 group :development, :test do
   gem 'rspec'
   gem 'capybara'
-  gem 'chromedriver-helper'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3.141'
   gem 'rack-test', require: 'rack/test'
   gem 'rack_session_access'
   gem 'factory_bot'
