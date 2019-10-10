@@ -13,6 +13,7 @@ gem 'bcrypt'
 gem 'tux'
 gem 'simplecov'
 gem 'rb-readline'
+gem 'faker'
 
 group :development do 
   gem 'chromedriver-helper', '~> 2.0'
@@ -25,7 +26,6 @@ group :development, :test do
   gem 'rack-test', require: 'rack/test'
   gem 'rack_session_access'
   gem 'factory_bot'
-  gem 'faker'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
 end
