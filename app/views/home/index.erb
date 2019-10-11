@@ -1,5 +1,15 @@
-<div>
-    <h2> My Categories</h2>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            My Categories (<%= @current_user.username %>)
+        </div>
+        <div class="col text-center">
+            <a href="/categories/add">Add Categories</a>
+        </div>
+        <div class="col text-right">
+            <a class="btn btn-danger" href="/logout">Logout</a>
+        </div>
+    </div>
     <table class="table">
         <thead>
         <tr>
@@ -11,27 +21,25 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td><span class="glyphicon glyphicon-search" aria-hidden="true"></span></td>
-            <td><a href="/recipes">View</a></td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td><a href="/recipes">View</a></td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            <td><a href="/recipes">View</a></td>
-        </tr>
+        <% unless @categories.length == 0 %>
+            <% @categories.each do |category| %>
+                <tr>
+                    <th scope="row"><%= category.id %></th>
+                    <td><%= category.name %></td>
+                    <td>Otto</td>
+                    <td><a href="/categories/<%= category.id %>/delete"> Delete</a></td>
+                    <td><a href="/categories/<%= category.id %>/recipes">View</a></td>
+                </tr>
+            <%end%>
+        <%else%>
+            <tr>
+                <td colspan="5">
+                    <div class="col text-center"> 
+                        No Categories, add some <a href="/categories/add">here</a>
+                    </div>
+                </td>
+            </tr>
+        <%end%>
         </tbody>
     </table>
 </div>

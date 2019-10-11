@@ -14,6 +14,8 @@ require 'capybara/dsl'
 require 'selenium-webdriver'
 require 'chromedriver-helper'
 require 'rack_session_access/capybara'
+require 'factory_bot'
+require 'faker'
 
 if ActiveRecord::Migrator.needs_migration?
   raise 'Migrations are pending. Run `rake db:migrate SINATRA_ENV=test` to resolve the issue.'

@@ -21,6 +21,13 @@ RSpec.describe User, type: :model do
             it { should validate_confirmation_of(:password) }
         end
 
-        
+        context 'validates uniqueness' do
+            let(:user) { create(:user) }
+
+            it { should validate_uniqueness_of(:email).
+                with_message('has already been taken') }
+            it { should validate_uniqueness_of(:username).
+                with_message('has already been taken') }
+        end  
     end
 end
