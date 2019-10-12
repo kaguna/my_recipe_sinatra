@@ -33,7 +33,6 @@ class UsersController < ApplicationController
   end
 
   get '/home' do
-    
     @categories = current_user.categories
     erb :"/home/index"
   end

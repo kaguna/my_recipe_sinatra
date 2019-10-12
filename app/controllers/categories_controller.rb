@@ -1,16 +1,15 @@
 class CategoriesController < ApplicationController
+  use Rack::MethodOverride
 
-  # GET: /categories
-  get "/categories" do
-    erb :"/categories/index.html"
+  get "/categories/:id/recipes" do
+    @recipes = category.recipes
+    erb :"/recipes/index"
   end
 
-  # GET: /categories/add
   get "/categories/add" do
     erb :"/categories/add_category"
   end
 
-  # POST: /categories
   post "/categories" do
     category = Category.new(params)
     category[:user_id] = session[:user_id]
@@ -21,17 +20,15 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # GET: /categories/5/edit
-  get "/categories/:id/edit" do
-    erb :"/categories/edit.html"
+  get "/categories/:id" do
+    erb :"/categories/edit_category"
   end
 
-  # PATCH: /categories/5
-  put "/categories/:id" do
-    redirect "/categories/:id"
+  put "/categories/:id/edit" do
+    category.update(params)
+    redirect "/home"
   end
 
-  # DELETE: /categories/5/delete
   delete "/categories/:id/delete" do
     category.destroy
     redirect "/home"
@@ -39,6 +36,5 @@ class CategoriesController < ApplicationController
 
   def category
     @category = Category.find(params[:id])
-    p @category
   end
 end

@@ -1,0 +1,41 @@
+<div>
+    <div class="row">
+        <div class="col">
+            <h2> Recipes for <%= @category.name %></h2>
+        </div>
+        <div class="col text-center">
+            <a href="/category/<%= category.id%>/recipes">Add Recipe</a>
+        </div>
+        <div class="col text-right">
+            <a href="/home"> Categories</a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+        </thead>
+        <tbody>
+            <% unless @recipes.length == 0 %>
+                <% @recipes.each do |recipe| %>
+                    <tr>
+                        <th scope="row"><%= recipe.id %></th>
+                        <td><%= recipe.name %></td>
+                        <td><%= recipe.description %></td>
+                    </tr>
+                <%end%>
+            <%else%>
+                <tr>
+                    <td colspan="5">
+                        <div class="col text-center"> 
+                            No recipes for <%= @category.name %>, add some <a href="/category/<%= category.id%>/recipes">here</a>
+                        </div>
+                    </td>
+                </tr>
+            <%end%>
+        </tbody>
+    </table>
+</div>
