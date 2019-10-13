@@ -1,5 +1,5 @@
 FactoryBot.define do
-    factory :recipes do
+    factory :recipe do
         association :category, factory: :category
         name { Faker::Food.ingredient }
         description { Faker::Food.description }
