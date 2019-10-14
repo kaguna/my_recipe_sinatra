@@ -1,37 +1,40 @@
 class CategoriesController < ApplicationController
+  use Rack::MethodOverride
 
-  # GET: /categories
-  get "/categories" do
-    erb :"/categories/index.html"
+  get "/categories/:id/recipes" do
+    @recipes = category.recipes
+    erb :"/recipes/index"
   end
 
-  # GET: /categories/new
-  get "/categories/new" do
-    erb :"/categories/new.html"
+  get "/categories/add" do
+    erb :"/categories/add_category"
   end
 
-  # POST: /categories
   post "/categories" do
-    redirect "/categories"
+    category = Category.new(params)
+    category[:user_id] = session[:user_id]
+    if category.save
+      redirect "/home"
+    else
+      erb :"/categories/add_category"
+    end
   end
 
-  # GET: /categories/5
   get "/categories/:id" do
-    erb :"/categories/show.html"
+    erb :"/categories/edit_category"
   end
 
-  # GET: /categories/5/edit
-  get "/categories/:id/edit" do
-    erb :"/categories/edit.html"
+  put "/categories/:id/edit" do
+    category.update(params)
+    redirect "/home"
   end
 
-  # PATCH: /categories/5
-  patch "/categories/:id" do
-    redirect "/categories/:id"
-  end
-
-  # DELETE: /categories/5/delete
   delete "/categories/:id/delete" do
-    redirect "/categories"
+    category.destroy
+    redirect "/home"
+  end
+
+  def category
+    @category = Category.find(params[:id])
   end
 end
