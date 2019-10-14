@@ -2,7 +2,7 @@
     User.create(
         username: Faker::Internet.username,
         email: Faker::Internet.email,
-        password: Faker::Internet.password
+        password: "secret"
     )
 end
 
@@ -16,7 +16,7 @@ users_ids.each do |user_id|
     end
 end
 
-categories_ids = Recipe.all.pluck(:id)
+categories_ids = Category.all.pluck(:id)
 categories_ids.each do |category_id|
     15.times do
         Recipe.create(
