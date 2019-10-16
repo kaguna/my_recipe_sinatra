@@ -14,6 +14,9 @@ gem 'tux'
 gem 'simplecov'
 gem 'rb-readline'
 gem 'faker'
+gem 'aws-sdk-sqs'
+gem 'shoryuken'
+gem 'pony'
 
 group :development do 
   gem 'chromedriver-helper', '~> 2.0'

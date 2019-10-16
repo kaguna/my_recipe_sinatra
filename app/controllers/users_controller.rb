@@ -1,3 +1,6 @@
+require 'shoryuken'
+require_relative '../../workers/register_mail_worker'
+
 class UsersController < ApplicationController
 
   get "/users/register" do
@@ -6,7 +9,8 @@ class UsersController < ApplicationController
 
   post "/users/register" do
     user = User.new(params)
-    if user.save
+    if user.save!
+      RegisterMailWorker.perform_async(user.id)
       redirect "/users/login"
     else
       erb :"/users/register"
