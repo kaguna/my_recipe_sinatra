@@ -1,4 +1,4 @@
-15.times do
+24.times do
     User.create(
         username: Faker::Internet.username,
         email: Faker::Internet.email,

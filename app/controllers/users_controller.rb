@@ -9,8 +9,8 @@ class UsersController < ApplicationController
 
   post "/users/register" do
     user = User.new(params)
-    if user.save!
-      RegisterMailWorker.perform_async(user.id)
+    if user.save
+      RegisterMailWorker.perform_async(user.id.to_s)
       redirect "/users/login"
     else
       erb :"/users/register"

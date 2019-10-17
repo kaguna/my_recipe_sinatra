@@ -23,17 +23,17 @@ RSpec.describe UsersController, type: :controller do
         end
     end
 
-    describe 'post /users/register' do
-        context 'when register button is clicked' do
-            before { post '/users/register', user_details }
+    # describe 'post /users/register' do
+    #     context 'when register button is clicked' do
+    #         before { post '/users/register', user_details }
 
-            it 'register user' do
-                expect(last_response).to be_redirect
-                follow_redirect!
-                expect(last_request.url).to eq 'http://example.org/users/login'
-            end
-        end
-    end
+    #         it 'register user' do
+    #             expect(last_response).to be_redirect
+    #             follow_redirect!
+    #             expect(last_request.url).to eq 'http://example.org/users/login'
+    #         end
+    #     end
+    # end
 
     describe 'User #Login' do
     let!(:user) { create :user, password: 'secret' }
