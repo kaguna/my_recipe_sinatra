@@ -10,7 +10,11 @@ class RegisterMailWorker
 
     def perform(_sqs_msg, user_id)
         user = User.find(user_id)
-        puts 'Sending email'
-        EmailSender.email_sender(user)
+        if user
+            puts "Sending email to #{user.email}..."
+            EmailSender.email_sender(user)
+        else
+            puts "Task failed"
+        end
     end
 end
